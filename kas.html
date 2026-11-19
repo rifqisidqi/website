@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kas Kelas TKJ 2</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(2,12,30,.91),rgba(2,20,45,.94)),
+        radial-gradient(circle at 20% 20%, #0877ad, transparent 40%),
+        linear-gradient(135deg,#061426,#102b48);
+    overflow-x: hidden;
+}
+
+/* BACKGROUND KOMPONEN KOMPUTER */
+.background-icons {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.tech {
+    position: absolute;
+    font-size: 65px;
+    opacity: .12;
+    animation: melayang 8s infinite ease-in-out;
+}
+
+.tech:nth-child(1) {top: 8%; left: 5%;}
+.tech:nth-child(2) {top: 30%; right: 7%; animation-delay: 1s;}
+.tech:nth-child(3) {top: 65%; left: 10%; animation-delay: 2s;}
+.tech:nth-child(4) {top: 80%; right: 12%; animation-delay: 3s;}
+.tech:nth-child(5) {top: 45%; left: 48%; animation-delay: 4s;}
+.tech:nth-child(6) {top: 10%; right: 35%; animation-delay: 2s;}
+
+@keyframes melayang {
+    0%,100% {transform: translateY(0) rotate(0);}
+    50% {transform: translateY(-20px) rotate(10deg);}
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px;
+    background: linear-gradient(135deg,#0877b9,#06365f);
+    border-bottom: 3px solid #21c7ff;
+    box-shadow: 0 5px 25px #0008;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #c8ecff;
+}
+
+.clock {
+    margin-top: 18px;
+    font-weight: bold;
+    line-height: 1.8;
+    color: #9ee8ff;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.section-title {
+    margin-bottom: 18px;
+    color: #4bd5ff;
+    font-size: 22px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: rgba(10,40,68,.88);
+    border: 1px solid #168dc5;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 5px 20px #0005;
+    backdrop-filter: blur(8px);
+}
+
+.summary {
+    text-align: center;
+    transition: .3s;
+}
+
+.summary:hover {
+    transform: translateY(-5px);
+    border-color: #4bd5ff;
+}
+
+.summary .icon {
+    font-size: 38px;
+}
+
+.summary h3 {
+    margin: 12px 0;
+    font-size: 16px;
+}
+
+.summary strong {
+    font-size: 25px;
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.income {color: #36ed9b;}
+.expense {color: #ff7373;}
+.balance {color: #4bd5ff;}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 16px;
+    border: 1px solid #248bb8;
+    border-radius: 8px;
+    background: #eaf6ff;
+    color: #102c42;
+    font-size: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #d7f3ff;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 4px;
+    transition: .2s;
+}
+
+button:hover {
+    transform: scale(1.04);
+}
+
+.btn-add {
+    background: #16b978;
+    color: white;
+}
+
+.btn-download {
+    background: #087fce;
+    color: white;
+}
+
+.btn-delete {
+    background: #dc4242;
+    color: white;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #31546d;
+}
+
+th {
+    background: #0879b5;
+    color: white;
+}
+
+tr:hover {
+    background: #ffffff12;
+}
+
+.tag-masuk {
+    color: #36ed9b;
+    font-weight: bold;
+}
+
+.tag-keluar {
+    color: #ff7373;
+    font-weight: bold;
+}
+
+.hapus-item {
+    background: #c83c3c;
+    color: white;
+    padding: 7px 10px;
+}
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    color: #9ac9df;
+    border-top: 1px solid #17618a;
+    margin-top: 35px;
+}
+
+@media(max-width:700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- IKON KOMPONEN KOMPUTER -->
+<div class="background-icons">
+    <div class="tech">🖥️</div>
+    <div class="tech">⌨️</div>
+    <div class="tech">💻</div>
+    <div class="tech">🖱️</div>
+    <div class="tech">⚙️</div>
+    <div class="tech">🔌</div>
+</div>
+
+<header>
+    <h1>💻 KAS KELAS TKJ 2</h1>
+    <p>SISTEM INFORMASI PEMBAYARAN UANG KAS KELAS</p>
+
+    <div class="clock">
+        <div id="hari"></div>
+        <div id="jam"></div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- RINGKASAN KEUANGAN -->
+    <h2 class="section-title">📊 RINGKASAN KEUANGAN</h2>
+
+    <div class="cards">
+
+        <div class="card summary">
+            <div class="icon">💰</div>
+            <h3>JUMLAH PEMASUKAN</h3>
+            <strong class="income" id="pemasukan">Rp 0</strong>
+        </div>
+
+        <div class="card summary">
+            <div class="icon">💸</div>
+            <h3>JUMLAH PENGELUARAN</h3>
+            <strong class="expense" id="pengeluaran">Rp 0</strong>
+        </div>
+
+        <div class="card summary">
+            <div class="icon">🏦</div>
+            <h3>TOTAL UANG KAS</h3>
+            <strong class="balance" id="saldo">Rp 0</strong>
+        </div>
+
+    </div>
+
+    <!-- FORM TRANSAKSI -->
+    <div class="card">
+        <h2 class="section-title">📝 INPUT TRANSAKSI KAS</h2>
+
+        <form id="formKas">
+
+            <label>Jenis Transaksi</label>
+            <select id="jenis" required>
+                <option value="masuk">Pemasukan</option>
+                <option value="keluar">Pengeluaran</option>
+            </select>
+
+            <label>Nama / Keterangan</label>
+            <input type="text" id="keterangan"
+                placeholder="Contoh: Pembayaran kas Andi" required>
+
+            <label>Jumlah Uang (Rp)</label>
+            <input type="number" id="jumlah"
+                placeholder="Contoh: 5000" min="1" step="1" required>
+
+            <label>Tanggal Transaksi</label>
+            <input type="date" id="tanggal" required>
+
+            <button type="submit" class="btn-add">
+                ➕ SIMPAN TRANSAKSI
+            </button>
+
+        </form>
+    </div>
+
+    <!-- RIWAYAT -->
+    <div class="card">
+        <h2 class="section-title">📋 RIWAYAT TRANSAKSI</h2>
+
+        <button class="btn-download" onclick="downloadLaporan()">
+            ⬇ DOWNLOAD LAPORAN
+        </button>
+
+        <button class="btn-delete" onclick="hapusSemua()">
+            🗑 HAPUS SEMUA DATA
+        </button>
+
+        <br><br>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody id="daftarTransaksi"></tbody>
+            </table>
+        </div>
+
+        <p id="kosong" style="text-align:center;padding:20px">
+            Belum ada transaksi kas.
+        </p>
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>💻 TKJ 2 - COMPUTER NETWORKING</h3>
+    <p>Website Pembayaran Uang Kas Kelas TKJ 2</p>
+    <p>© 2026 Sistem Kas Kelas</p>
+</div>
+
+<script>
+
+// MENGAMBIL DATA DARI BROWSER
+let transaksi = JSON.parse(
+    localStorage.getItem("kas_tkj2")
+) || [];
+
+// FORMAT RUPIAH
+function rupiah(angka) {
+    return "Rp " + angka.toLocaleString("id-ID");
+}
+
+// TANGGAL DAN JAM OTOMATIS
+function updateJam() {
+    let sekarang = new Date();
+
+    document.getElementById("hari").textContent =
+        sekarang.toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+
+    document.getElementById("jam").textContent =
+        "⏰ " + sekarang.toLocaleTimeString("id-ID");
+}
+
+updateJam();
+setInterval(updateJam, 1000);
+
+// TANGGAL DEFAULT
+document.getElementById("tanggal").value =
+    new Date().toLocaleDateString("en-CA");
+
+// SIMPAN DATA
+function simpanData() {
+    localStorage.setItem(
+        "kas_tkj2",
+        JSON.stringify(transaksi)
+    );
+}
+
+// INPUT TRANSAKSI
+document.getElementById("formKas")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let jenis = document.getElementById("jenis").value;
+    let keterangan =
+        document.getElementById("keterangan").value.trim();
+    let jumlah = Number(document.getElementById("jumlah").value);
+    let tanggal = document.getElementById("tanggal").value;
+
+    if (!keterangan || !tanggal || !Number.isSafeInteger(jumlah) || jumlah <= 0) {
+        alert("Mohon isi data dengan benar!");
+        return;
+    }
+
+    transaksi.push({
+        id: Date.now() + Math.random(),
+        jenis: jenis,
+        keterangan: keterangan,
+        jumlah: jumlah,
+        tanggal: tanggal
+    });
+
+    simpanData();
+    tampilkanData();
+
+    this.reset();
+
+    document.getElementById("tanggal").value =
+        new Date().toLocaleDateString("en-CA");
+
+    alert("Transaksi berhasil disimpan!");
+
+});
+
+// TAMPILKAN DATA
+function tampilkanData() {
+
+    let totalMasuk = 0;
+    let totalKeluar = 0;
+
+    transaksi.forEach(t => {
+        if (t.jenis === "masuk") {
+            totalMasuk += t.jumlah;
+        } else {
+            totalKeluar += t.jumlah;
+        }
+    });
+
+    let saldo = totalMasuk - totalKeluar;
+
+    document.getElementById("pemasukan").textContent =
+        rupiah(totalMasuk);
+
+    document.getElementById("pengeluaran").textContent =
+        rupiah(totalKeluar);
+
+    document.getElementById("saldo").textContent =
+        rupiah(saldo);
+
+    let tabel = document.getElementById("daftarTransaksi");
+    tabel.replaceChildren();
+
+    document.getElementById("kosong").style.display =
+        transaksi.length === 0 ? "block" : "none";
+
+    transaksi.forEach((t, index) => {
+
+        let baris = document.createElement("tr");
+
+        let nilai = [
+            index + 1,
+            new Date(t.tanggal + "T00:00:00")
+                .toLocaleDateString("id-ID"),
+            t.keterangan,
+            t.jenis === "masuk" ? "Pemasukan" : "Pengeluaran",
+            rupiah(t.jumlah)
+        ];
+
+        nilai.forEach((isi, i) => {
+            let td = document.createElement("td");
+            td.textContent = isi;
+
+            if (i === 3) {
+                td.className = t.jenis === "masuk"
+                    ? "tag-masuk"
+                    : "tag-keluar";
+            }
+
+            baris.appendChild(td);
+        });
+
+        let tdAksi = document.createElement("td");
+        let tombol = document.createElement("button");
+
+        tombol.textContent = "Hapus";
+        tombol.className = "hapus-item";
+
+        tombol.addEventListener("click", () => {
+            hapusTransaksi(t.id);
+        });
+
+        tdAksi.appendChild(tombol);
+        baris.appendChild(tdAksi);
+
+        tabel.appendChild(baris);
+    });
+}
+
+// HAPUS SATU TRANSAKSI
+function hapusTransaksi(id) {
+
+    if (!confirm("Yakin ingin menghapus transaksi ini?")) {
+        return;
+    }
+
+    transaksi = transaksi.filter(t => t.id !== id);
+
+    simpanData();
+    tampilkanData();
+}
+
+// HAPUS SEMUA
+function hapusSemua() {
+
+    if (!confirm("Yakin ingin menghapus SEMUA data kas?")) {
+        return;
+    }
+
+    transaksi = [];
+
+    simpanData();
+    tampilkanData();
+}
+
+// DOWNLOAD LAPORAN CSV
+function downloadLaporan() {
+
+    if (transaksi.length === 0) {
+        alert("Belum ada data untuk diunduh!");
+        return;
+    }
+
+    let csv = "No,Tanggal,Keterangan,Jenis,Jumlah\n";
+
+    transaksi.forEach((t, i) => {
+
+        let tanggal = new Date(t.tanggal + "T00:00:00")
+            .toLocaleDateString("id-ID");
+
+        let keterangan = '"' +
+            t.keterangan.replace(/"/g, '""') + '"';
+
+        csv += [
+            i + 1,
+            tanggal,
+            keterangan,
+            t.jenis,
+            t.jumlah
+        ].join(",") + "\n";
+
+    });
+
+    let file = new Blob(["\uFEFF" + csv], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    let link = document.createElement("a");
+    let url = URL.createObjectURL(file);
+
+    link.href = url;
+    link.download = "Laporan_Kas_TKJ2.csv";
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+// TAMPILKAN SAAT WEBSITE DIBUKA
+tampilkanData();
+
+</script>
+
+</body>
+</html>
