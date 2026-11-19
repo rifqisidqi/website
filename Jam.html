@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Clock Pro</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #101827;
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  padding: 22px 7%;
+  background: #17243a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  color: #55d6ff;
+}
+
+header span {
+  color: #9db0c9;
+  font-size: 13px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1050px;
+  margin: 30px auto;
+}
+
+.clock-box {
+  text-align: center;
+  background: linear-gradient(135deg,#173b67,#453b83);
+  padding: 40px 15px;
+  border-radius: 22px;
+  box-shadow: 0 10px 35px #0004;
+}
+
+.clock-box h2 {
+  font-size: 19px;
+  color: #b7dfff;
+}
+
+#clock {
+  font-size: clamp(40px, 10vw, 75px);
+  font-weight: bold;
+  margin: 18px 0;
+  letter-spacing: 3px;
+}
+
+#date {
+  color: #d6e6ff;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.tabs button {
+  padding: 14px 5px;
+  border: none;
+  border-radius: 12px;
+  background: #263851;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabs button.active {
+  background: #3689f5;
+}
+
+.panel {
+  display: none;
+  background: #19263a;
+  border: 1px solid #30425e;
+  padding: 25px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+}
+
+.panel.active {
+  display: block;
+}
+
+.panel h2 {
+  margin-bottom: 20px;
+  color: #61caff;
+}
+
+.big-time {
+  text-align: center;
+  font-size: clamp(38px, 9vw, 60px);
+  font-weight: bold;
+  margin: 25px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0 15px;
+  border-radius: 9px;
+  border: 1px solid #40516c;
+  background: #263851;
+  color: white;
+  font-size: 15px;
+}
+
+label {
+  color: #c9d9ed;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #3689f5;
+  color: white;
+}
+
+.btn:hover {
+  opacity: .85;
+}
+
+.red { background: #e34c60; }
+.green { background: #159c78; }
+.gray { background: #52647d; }
+
+.world-card, .alarm-card {
+  background: #263851;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.world-time {
+  color: #62d7ff;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.small {
+  color: #aebed2;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+#message {
+  text-align: center;
+  margin-top: 15px;
+  color: #65e6ba;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #8da2bb;
+}
+
+@media(max-width:600px) {
+  .tabs {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .tabs button:last-child {
+    grid-column: span 2;
+  }
+
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">◷ DIGITAL CLOCK PRO</div>
+  <span>SMART TIME SYSTEM</span>
+</header>
+
+<div class="container">
+
+  <!-- JAM WIB -->
+  <div class="clock-box">
+    <h2>🌏 WAKTU INDONESIA BARAT (WIB)</h2>
+    <div id="clock">00:00:00</div>
+    <div id="date">Memuat tanggal...</div>
+    <div class="small">Asia/Jakarta (UTC+7)</div>
+  </div>
+
+  <!-- MENU -->
+  <div class="tabs">
+    <button class="active" onclick="showTab('home',this)">🕒 Jam</button>
+    <button onclick="showTab('timer',this)">⏳ Timer</button>
+    <button onclick="showTab('stopwatch',this)">⏱️ Stopwatch</button>
+    <button onclick="showTab('world',this)">🌍 Dunia</button>
+    <button onclick="showTab('alarm',this)">🔔 Alarm</button>
+  </div>
+
+  <!-- HOME -->
+  <div class="panel active" id="home">
+    <h2>Jam Digital WIB</h2>
+    <p>Jam digital otomatis mengikuti waktu WIB secara langsung.</p>
+    <div class="small">Waktu diperbarui setiap detik.</div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="panel" id="timer">
+    <h2>⏳ TIMER</h2>
+
+    <label>Masukkan durasi (jam, menit, detik)</label>
+
+    <div style="display:flex;gap:8px">
+      <input id="th" type="number" min="0" max="999" placeholder="Jam">
+      <input id="tm" type="number" min="0" max="59" placeholder="Menit">
+      <input id="ts" type="number" min="0" max="59" placeholder="Detik">
+    </div>
+
+    <div class="big-time" id="timerDisplay">00:00:00</div>
+
+    <div class="btns">
+      <button class="btn green" onclick="startTimer()">Mulai</button>
+      <button class="btn gray" onclick="pauseTimer()">Jeda</button>
+      <button class="btn red" onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <!-- STOPWATCH -->
+  <div class="panel" id="stopwatch">
+    <h2>⏱️ STOPWATCH</h2>
+
+    <div class="big-time" id="stopDisplay">00:00:00.00</div>
+
+    <div class="btns">
+      <button class="btn green" onclick="startStopwatch()">Mulai</button>
+      <button class="btn gray" onclick="pauseStopwatch()">Jeda</button>
+      <button class="btn red" onclick="resetStopwatch()">Reset</button>
+    </div>
+  </div>
+
+  <!-- WORLD CLOCK -->
+  <div class="panel" id="world">
+    <h2>🌍 JAM DUNIA</h2>
+    <p class="small">Waktu real-time di berbagai negara.</p>
+    <div id="worldList"></div>
+  </div>
+
+  <!-- ALARM -->
+  <div class="panel" id="alarm">
+    <h2>🔔 PENGATUR ALARM</h2>
+
+    <label>Pilih zona waktu</label>
+    <select id="alarmZone">
+      <option value="Asia/Jakarta">WIB - Jakarta</option>
+      <option value="Asia/Pontianak">WIB - Pontianak</option>
+      <option value="Asia/Makassar">WITA - Makassar</option>
+      <option value="Asia/Jayapura">WIT - Jayapura</option>
+      <option value="Asia/Singapore">Singapura</option>
+      <option value="Asia/Tokyo">Tokyo</option>
+      <option value="Europe/London">London</option>
+      <option value="America/New_York">New York</option>
+      <option value="Australia/Sydney">Sydney</option>
+    </select>
+
+    <label>Atur jam alarm</label>
+    <input type="time" id="alarmTime">
+
+    <label>Nama alarm</label>
+    <input type="text" id="alarmName" placeholder="Contoh: Bangun pagi">
+
+    <button class="btn green" onclick="addAlarm()">+ Tambahkan Alarm</button>
+
+    <div class="btns">
+      <button class="btn gray" onclick="requestNotification()">Aktifkan Notifikasi</button>
+    </div>
+
+    <div id="alarmList"></div>
+    <div id="message"></div>
+  </div>
+
+</div>
+
+<footer>
+  DIGITAL CLOCK PRO © 2026<br>
+  Dibuat dengan HTML, CSS & JavaScript
+</footer>
+
+<script>
+
+// ================= JAM WIB =================
+
+function updateClock() {
+  const now = new Date();
+
+  document.getElementById("clock").textContent =
+    new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    }).format(now);
+
+  document.getElementById("date").textContent =
+    new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(now);
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// ================= NAVIGASI =================
+
+function showTab(id, button) {
+  document.querySelectorAll(".panel").forEach(p =>
+    p.classList.remove("active")
+  );
+
+  document.querySelectorAll(".tabs button").forEach(b =>
+    b.classList.remove("active")
+  );
+
+  document.getElementById(id).classList.add("active");
+  button.classList.add("active");
+}
+
+// ================= TIMER =================
+
+let timerSeconds = 0;
+let timerEnd = 0;
+let timerInterval = null;
+let timerRunning = false;
+
+function formatTime(seconds) {
+  let h = Math.floor(seconds / 3600);
+  let m = Math.floor((seconds % 3600) / 60);
+  let s = seconds % 60;
+
+  return [h,m,s].map(x => String(x).padStart(2,"0")).join(":");
+}
+
+function updateTimer() {
+  timerSeconds = Math.max(0, Math.ceil((timerEnd - Date.now()) / 1000));
+  document.getElementById("timerDisplay").textContent =
+    formatTime(timerSeconds);
+
+  if(timerSeconds <= 0) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timerRunning = false;
+    document.getElementById("timerDisplay").textContent = "00:00:00";
+    notify("Timer selesai!", "Waktu hitung mundur sudah habis.");
+  }
+}
+
+function startTimer() {
+  if(timerRunning) return;
+
+  if(timerSeconds <= 0) {
+    let h = Number(document.getElementById("th").value) || 0;
+    let m = Number(document.getElementById("tm").value) || 0;
+    let s = Number(document.getElementById("ts").value) || 0;
+
+    if(h < 0 || m < 0 || m > 59 || s < 0 || s > 59 ||
+       !Number.isInteger(h) || !Number.isInteger(m) || !Number.isInteger(s) ||
+       h + m + s === 0) {
+      alert("Masukkan durasi timer yang benar!");
+      return;
+    }
+
+    timerSeconds = h * 3600 + m * 60 + s;
+  }
+
+  timerEnd = Date.now() + timerSeconds * 1000;
+  timerRunning = true;
+  timerInterval = setInterval(updateTimer, 200);
+  updateTimer();
+}
+
+function pauseTimer() {
+  if(!timerRunning) return;
+  clearInterval(timerInterval);
+  timerInterval = null;
+  timerRunning = false;
+  timerSeconds = Math.max(0, Math.ceil((timerEnd - Date.now()) / 1000));
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  timerRunning = false;
+  timerSeconds = 0;
+  document.getElementById("timerDisplay").textContent = "00:00:00";
+}
+
+// ================= STOPWATCH =================
+
+let stopwatchStart = 0;
+let stopwatchElapsed = 0;
+let stopwatchInterval = null;
+
+function drawStopwatch() {
+  let ms = stopwatchElapsed;
+  let h = Math.floor(ms / 3600000);
+  let m = Math.floor((ms % 3600000) / 60000);
+  let s = Math.floor((ms % 60000) / 1000);
+  let cs = Math.floor((ms % 1000) / 10);
+
+  document.getElementById("stopDisplay").textContent =
+    [h,m,s].map(x => String(x).padStart(2,"0")).join(":")
+    + "." + String(cs).padStart(2,"0");
+}
+
+function startStopwatch() {
+  if(stopwatchInterval) return;
+
+  stopwatchStart = Date.now() - stopwatchElapsed;
+
+  stopwatchInterval = setInterval(() => {
+    stopwatchElapsed = Date.now() - stopwatchStart;
+    drawStopwatch();
+  }, 30);
+}
+
+function pauseStopwatch() {
+  if(!stopwatchInterval) return;
+  clearInterval(stopwatchInterval);
+  stopwatchInterval = null;
+}
+
+function resetStopwatch() {
+  pauseStopwatch();
+  stopwatchElapsed = 0;
+  drawStopwatch();
+}
+
+// ================= JAM DUNIA =================
+
+const cities = [
+  ["🇮🇩 Jakarta", "Asia/Jakarta"],
+  ["🇮🇩 Makassar", "Asia/Makassar"],
+  ["🇮🇩 Jayapura", "Asia/Jayapura"],
+  ["🇸🇬 Singapura", "Asia/Singapore"],
+  ["🇯🇵 Tokyo", "Asia/Tokyo"],
+  ["🇰🇷 Seoul", "Asia/Seoul"],
+  ["🇬🇧 London", "Europe/London"],
+  ["🇫🇷 Paris", "Europe/Paris"],
+  ["🇺🇸 New York", "America/New_York"],
+  ["🇦🇺 Sydney", "Australia/Sydney"]
+];
+
+function updateWorld() {
+  document.getElementById("worldList").innerHTML =
+    cities.map(city => {
+      let time = new Intl.DateTimeFormat("id-ID", {
+        timeZone: city[1],
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(new Date());
+
+      let date = new Intl.DateTimeFormat("id-ID", {
+        timeZone: city[1],
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }).format(new Date());
+
+      return `
+        <div class="world-card">
+          <div>
+            <b>${city[0]}</b>
+            <div class="small">${date}</div>
+          </div>
+          <div class="world-time">${time}</div>
+        </div>`;
+    }).join("");
+}
+
+setInterval(updateWorld, 1000);
+updateWorld();
+
+// ================= NOTIFIKASI =================
+
+async function requestNotification() {
+  if(!("Notification" in window)) {
+    alert("Browser tidak mendukung notifikasi.");
+    return;
+  }
+
+  let permission = await Notification.requestPermission();
+
+  if(permission === "granted") {
+    alert("Notifikasi berhasil diaktifkan!");
+  } else {
+    alert("Izin notifikasi belum diberikan.");
+  }
+}
+
+function notify(title, body) {
+  if("Notification" in window &&
+     Notification.permission === "granted") {
+    new Notification(title, {
+      body: body,
+      icon: "https://cdn-icons-png.flaticon.com/512/1827/1827370.png"
+    });
+  } else {
+    alert(title + "\n" + body);
+  }
+}
+
+// ================= ALARM =================
+
+let alarms = [];
+let triggeredAlarms = new Set();
+
+function addAlarm() {
+  let time = document.getElementById("alarmTime").value;
+  let zone = document.getElementById("alarmZone").value;
+  let name = document.getElementById("alarmName").value.trim();
+
+  if(!time) {
+    alert("Silakan atur waktu alarm!");
+    return;
+  }
+
+  let id = Date.now() + Math.random();
+
+  alarms.push({
+    id,
+    time,
+    zone,
+    name: name || "Alarm",
+    active: true,
+    lastDate: ""
+  });
+
+  renderAlarms();
+
+  document.getElementById("alarmName").value = "";
+  document.getElementById("message").textContent =
+    "Alarm berhasil ditambahkan!";
+}
+
+function renderAlarms() {
+  document.getElementById("alarmList").innerHTML =
+    alarms.map(a => `
+      <div class="alarm-card">
+        <div>
+          <b>${a.name}</b>
+          <div class="small">${a.zone}</div>
+          <div class="world-time">${a.time}</div>
+          <div class="small">${a.active ? "Aktif" : "Nonaktif"}</div>
+        </div>
+
+        <div class="btns">
+          <button class="btn gray"
+            onclick="toggleAlarm(${a.id})">
+            ${a.active ? "Matikan" : "Aktifkan"}
+          </button>
+
+          <button class="btn red"
+            onclick="deleteAlarm(${a.id})">
+            Hapus
+          </button>
+        </div>
+      </div>
+    `).join("");
+}
+
+function toggleAlarm(id) {
+  let a = alarms.find(x => x.id === id);
+  if(a) a.active = !a.active;
+  renderAlarms();
+}
+
+function deleteAlarm(id) {
+  alarms = alarms.filter(x => x.id !== id);
+  renderAlarms();
+}
+
+function checkAlarms() {
+  const now = new Date();
+
+  alarms.forEach(a => {
+    if(!a.active) return;
+
+    let parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: a.zone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(now);
+
+    let get = type => parts.find(p => p.type === type).value;
+
+    let dateKey = `${get("year")}-${get("month")}-${get("day")}`;
+    let currentTime = `${get("hour")}:${get("minute")}`;
+
+    if(currentTime === a.time && a.lastDate !== dateKey) {
+      a.lastDate = dateKey;
+
+      notify("🔔 ALARM: " + a.name,
+        "Sekarang pukul " + a.time + " di zona " + a.zone);
+
+      renderAlarms();
+    }
+  });
+}
+
+setInterval(checkAlarms, 1000);
+
+</script>
+
+</body>
+</html>
