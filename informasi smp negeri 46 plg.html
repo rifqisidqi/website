@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP Negeri 46 Palembang | Sekolah Bebas Rokok</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --green: #159957;
+  --dark: #073b2a;
+  --light: #eafff2;
+  --white: #ffffff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4fff7;
+  color: #183c2c;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(120deg, #064e35, #159957);
+  color: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 15px #0002;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #baffd0;
+}
+
+.hero {
+  min-height: 510px;
+  padding: 90px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  flex-wrap: wrap;
+  color: white;
+  background:
+    radial-gradient(circle at 80% 20%, #42d88a55, transparent 30%),
+    linear-gradient(135deg, #063d2b, #11965b);
+}
+
+.hero-text {
+  max-width: 650px;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 6vw, 58px);
+  line-height: 1.15;
+  margin: 15px 0;
+}
+
+.hero h1 span {
+  color: #aaffc8;
+}
+
+.hero p {
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.hero-art {
+  font-size: 120px;
+  text-align: center;
+  flex: 1;
+  min-width: 180px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-15px); }
+}
+
+.btn {
+  display: inline-block;
+  background: white;
+  color: #087343;
+  padding: 13px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  background: #c9ffdc;
+}
+
+section {
+  padding: 65px 8%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  color: #087343;
+  font-size: 30px;
+}
+
+.section-title p {
+  color: #66776d;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 17px;
+  box-shadow: 0 5px 20px #064e3510;
+  border: 1px solid #dcefe3;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px #064e3520;
+}
+
+.card .emoji {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  color: #087343;
+  margin-bottom: 10px;
+}
+
+.profile {
+  background: white;
+}
+
+.profile-box {
+  max-width: 850px;
+  margin: auto;
+  background: #eafff2;
+  border-left: 6px solid #159957;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.profile-box p {
+  margin: 8px 0;
+}
+
+.campaign {
+  background: linear-gradient(135deg, #063d2b, #128b54);
+  color: white;
+  text-align: center;
+}
+
+.campaign h2 {
+  font-size: clamp(30px, 5vw, 45px);
+  margin-bottom: 15px;
+}
+
+.campaign .message {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  font-size: 17px;
+}
+
+.warning {
+  background: #fff1e8;
+}
+
+.warning .card {
+  border-top: 4px solid #ed8752;
+}
+
+.tips {
+  background: #eafff2;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin: 8px 0;
+}
+
+.quote {
+  text-align: center;
+  background: white;
+}
+
+.quote blockquote {
+  max-width: 750px;
+  margin: auto;
+  font-size: 23px;
+  font-weight: bold;
+  color: #087343;
+}
+
+.contact {
+  background: #073b2a;
+  color: white;
+  text-align: center;
+}
+
+.contact h2 {
+  margin-bottom: 15px;
+}
+
+.contact a {
+  color: #aaffc8;
+}
+
+footer {
+  background: #04291e;
+  color: #c9e8d5;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+}
+
+.top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #159957;
+  color: white;
+  text-decoration: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  box-shadow: 0 4px 12px #0003;
+}
+
+@media(max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+  nav {
+    justify-content: center;
+    gap: 12px;
+  }
+  .hero {
+    text-align: center;
+    padding: 65px 7%;
+  }
+  .hero-art {
+    font-size: 90px;
+  }
+  section {
+    padding: 50px 6%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🌿 SMPN 46 PALEMBANG</div>
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#profil">Profil</a>
+    <a href="#kampanye">Anti Rokok</a>
+    <a href="#dampak">Dampak</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+</header>
+
+<!-- BERANDA -->
+<div class="hero" id="beranda">
+  <div class="hero-text">
+    <p>SELAMAT DATANG DI WEBSITE SEKOLAH</p>
+    <h1>GENERASI SEHAT <span>TANPA ROKOK!</span></h1>
+    <p>
+      SMP Negeri 46 Palembang mengajak seluruh warga sekolah
+      untuk menjaga kesehatan, menciptakan lingkungan bersih,
+      dan menjauhi rokok.
+    </p>
+    <a href="#kampanye" class="btn">Pelajari Kampanye</a>
+  </div>
+
+  <div class="hero-art">🌱🚭</div>
+</div>
+
+<!-- PROFIL -->
+<section class="profile" id="profil">
+  <div class="section-title">
+    <h2>Profil Sekolah</h2>
+    <p>Mengenal SMP Negeri 46 Palembang</p>
+  </div>
+
+  <div class="profile-box">
+    <h3>🏫 SMP Negeri 46 Palembang</h3>
+    <p><b>NPSN:</b> 10603731</p>
+    <p><b>Status:</b> Negeri</p>
+    <p><b>Jenjang:</b> Sekolah Menengah Pertama</p>
+    <p><b>Akreditasi:</b> A</p>
+    <p><b>Alamat:</b> Jl. Sukabangun II Km. 6,
+      Kelurahan Sukajaya, Kecamatan Sukarami,
+      Kota Palembang, Sumatera Selatan.</p>
+    <p><b>Email:</b> smpnegeri46palembang@gmail.com</p>
+    <p><b>Website:</b>
+      <a href="https://smpnegeri46plg.sch.id/" target="_blank">
+        Website resmi sekolah
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- VISI MISI -->
+<section>
+  <div class="section-title">
+    <h2>Visi dan Semangat Sekolah</h2>
+    <p>Membangun generasi yang unggul dan peduli lingkungan</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">🎯</div>
+      <h3>Visi</h3>
+      <p>
+        Mewujudkan peserta didik yang kreatif, inovatif,
+        kolaboratif, berbudaya, peduli lingkungan dan
+        berwawasan global dalam semangat Pancasila.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤝</div>
+      <h3>Misi Kampanye</h3>
+      <p>
+        Mengajak warga sekolah membangun kebiasaan hidup sehat,
+        menjaga kebersihan lingkungan, dan menciptakan
+        kawasan sekolah bebas asap rokok.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KAMPANYE -->
+<section class="campaign" id="kampanye">
+  <h2>🚭 JANGAN MEROKOK!</h2>
+  <p class="message">
+    Rokok bukan simbol keren atau keberanian.
+    Pilih hidup sehat, lindungi diri sendiri dan orang-orang
+    di sekitar kita dari asap rokok.
+  </p>
+  <a href="#dampak" class="btn">Kenali Bahayanya</a>
+</section>
+
+<!-- DAMPAK -->
+<section class="warning" id="dampak">
+  <div class="section-title">
+    <h2>Bahaya Rokok bagi Kesehatan</h2>
+    <p>Kenali alasan mengapa kita harus menjauhi rokok</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">🫁</div>
+      <h3>Gangguan Pernapasan</h3>
+      <p>Asap rokok dapat merusak paru-paru dan mengganggu sistem pernapasan.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">❤️</div>
+      <h3>Gangguan Jantung</h3>
+      <p>Merokok meningkatkan risiko penyakit jantung dan pembuluh darah.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🧠</div>
+      <h3>Ketergantungan</h3>
+      <p>Nikotin dapat menyebabkan ketergantungan dan memengaruhi perkembangan otak remaja.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌫️</div>
+      <h3>Asap bagi Orang Lain</h3>
+      <p>Asap rokok juga berbahaya bagi orang yang menghirupnya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips">
+  <div class="section-title">
+    <h2>Tips Menjadi Remaja Sehat</h2>
+    <p>Mulai kebiasaan baik dari lingkungan sekolah</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">🏃</div>
+      <h3>Rajin Berolahraga</h3>
+      <p>Lakukan aktivitas fisik secara rutin.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🥗</div>
+      <h3>Makan Sehat</h3>
+      <p>Konsumsi makanan bergizi dan minum air putih.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🙅</div>
+      <h3>Berani Menolak</h3>
+      <p>Tolak ajakan merokok dengan sopan dan tegas.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌳</div>
+      <h3>Jaga Lingkungan</h3>
+      <p>Ikut menjaga sekolah agar bersih dan bebas asap rokok.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PESAN -->
+<section class="quote">
+  <div class="section-title">
+    <h2>Pesan untuk Generasi Muda</h2>
+  </div>
+
+  <blockquote>
+    "Masa depan yang cerah dimulai dari pilihan hidup yang sehat.
+    Katakan TIDAK pada rokok dan YA pada prestasi!"
+  </blockquote>
+  <p style="margin-top:20px">🌿 Sehat Sekolahku, Hebat Generasiku 🌿</p>
+</section>
+
+<!-- KONTAK -->
+<section class="contact" id="kontak">
+  <h2>📍 Hubungi Sekolah</h2>
+  <p>SMP Negeri 46 Palembang</p>
+  <p>Jl. Sukabangun II Km. 6, Sukarami, Palembang</p>
+  <p>Email: smpnegeri46palembang@gmail.com</p>
+  <p>
+    Website:
+    <a href="https://smpnegeri46plg.sch.id/" target="_blank">
+      smpnegeri46plg.sch.id
+    </a>
+  </p>
+  <br>
+  <a class="btn"
+     href="https://www.google.com/maps/search/?api=1&query=SMP+Negeri+46+Palembang">
+     Lihat Lokasi Sekolah
+  </a>
+</section>
+
+<a href="#beranda" class="top">↑</a>
+
+  
+<footer>
+  <p>© 2026 SMP Negeri 46 Palembang</p>
+  <p>Kampanye Edukasi: Sekolah Bebas Rokok 🚭</p>
+  <p>Belajar, Berprestasi, dan Hidup Sehat.</p>
+  <hr style="margin:15px auto; width:60%; border:1px solid #47745e;">
+  <p>Website ini dibuat oleh:</p>
+  <h3 style="color:#aaffc8;">Rifqi Sidqi</h3>
+  <p>Kelas TKJ 2 | Web Developer</p>
+</footer>
+
+</body>
+</html>
