@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tangkap Bintang</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #10243e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffd700;
+        }
+
+        .info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 18px;
+            margin: 20px;
+        }
+
+        #arena {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            margin: auto;
+            background: #eaf5ff;
+            border: 4px solid #ffd700;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #bintang {
+            position: absolute;
+            font-size: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: none;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #mulai {
+            background: #20c96b;
+            color: white;
+            font-weight: bold;
+        }
+
+        #pesan {
+            color: #ffd700;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>⭐ Tangkap Bintang ⭐</h1>
+    <p>Tekan bintang sebanyak mungkin dalam 30 detik!</p>
+
+    <div class="info">
+        <div>Skor: <span id="skor">0</span></div>
+        <div>Waktu: <span id="waktu">30</span></div>
+    </div>
+
+    <div id="arena">
+        <button id="bintang" aria-label="Tangkap bintang">⭐</button>
+    </div>
+
+    <button id="mulai">Mulai Game</button>
+    <p id="pesan">Siap bermain?</p>
+
+    <script>
+        const arena = document.getElementById("arena");
+        const bintang = document.getElementById("bintang");
+        const skorTeks = document.getElementById("skor");
+        const waktuTeks = document.getElementById("waktu");
+        const pesan = document.getElementById("pesan");
+        const tombolMulai = document.getElementById("mulai");
+
+        let skor = 0;
+        let waktu = 30;
+        let timer;
+        let bermain = false;
+
+        function pindahkanBintang() {
+            const maxX = arena.clientWidth - bintang.offsetWidth;
+            const maxY = arena.clientHeight - bintang.offsetHeight;
+
+            bintang.style.left =
+                Math.floor(Math.random() * (maxX + 1)) + "px";
+
+            bintang.style.top =
+                Math.floor(Math.random() * (maxY + 1)) + "px";
+        }
+
+        function mulaiGame() {
+            clearInterval(timer);
+
+            skor = 0;
+            waktu = 30;
+            bermain = true;
+
+            skorTeks.textContent = skor;
+            waktuTeks.textContent = waktu;
+            pesan.textContent = "Ayo tangkap bintangnya!";
+            tombolMulai.textContent = "Main Lagi";
+            bintang.style.display = "block";
+
+            pindahkanBintang();
+
+            timer = setInterval(function() {
+                waktu--;
+                waktuTeks.textContent = waktu;
+
+                if (waktu <= 0) {
+                    clearInterval(timer);
+                    bermain = false;
+                    bintang.style.display = "none";
+                    pesan.textContent =
+                        "Waktu habis! Skor akhir: " + skor;
+                }
+            }, 1000);
+        }
+
+        bintang.addEventListener("click", function() {
+            if (!bermain) return;
+
+            skor++;
+            skorTeks.textContent = skor;
+            pindahkanBintang();
+        });
+
+        tombolMulai.addEventListener("click", mulaiGame);
+    </script>
+</body>
+</html>
