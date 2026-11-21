@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPDB SMKN 2 Palembang 2027/2028</title>
+
+<style>
+:root {
+  --blue:#0756a5;
+  --blue2:#087bd3;
+  --dark:#082c52;
+  --light:#eaf4ff;
+  --white:#fff;
+  --text:#24364b;
+  --muted:#718096;
+  --bg:#f4f7fc;
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+header {
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 12px #0001;
+}
+nav {
+  max-width:1150px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.brand {color:var(--blue);font-weight:bold;font-size:17px}
+.brand small {display:block;color:var(--muted);font-size:11px}
+nav a {
+  text-decoration:none;
+  color:var(--text);
+  font-size:13px;
+  margin:5px;
+  font-weight:bold;
+}
+nav a:hover {color:var(--blue2)}
+.hero {
+  background:linear-gradient(120deg,#062e60,#087bd3);
+  color:white;
+  padding:80px 20px;
+}
+.hero-inner {
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+.hero h1 {
+  font-size:clamp(30px,5vw,49px);
+  line-height:1.2;
+  margin:15px 0;
+}
+.hero p {color:#d9ecff}
+.hero-art {
+  background:#ffffff17;
+  border:1px solid #ffffff40;
+  border-radius:25px;
+  min-height:220px;
+  display:grid;
+  place-items:center;
+  font-size:100px;
+}
+.container {max-width:1100px;margin:auto;padding:55px 20px}
+.section-title {text-align:center;margin-bottom:30px}
+.section-title h2 {color:var(--dark);font-size:29px}
+.section-title p {color:var(--muted);font-size:14px}
+.btn {
+  display:inline-block;
+  padding:12px 20px;
+  border:0;
+  border-radius:8px;
+  background:var(--blue);
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+}
+.btn:hover {background:var(--blue2)}
+.btn-white {background:white;color:var(--blue)}
+.cards {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.card {
+  background:white;
+  padding:23px;
+  border-radius:15px;
+  box-shadow:0 4px 16px #102d5010;
+  border:1px solid #e8eef5;
+}
+.card h3 {color:var(--blue);margin-bottom:10px}
+.card p,.card li {font-size:14px;color:#63748a}
+.card ul {padding-left:20px}
+.number {
+  width:38px;height:38px;
+  border-radius:10px;
+  background:var(--light);
+  display:grid;
+  place-items:center;
+  color:var(--blue);
+  font-weight:bold;
+  margin-bottom:12px;
+}
+.schedule {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.schedule .card {border-top:5px solid var(--blue2)}
+.tag {
+  display:inline-block;
+  background:#e5f2ff;
+  color:var(--blue);
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+.jurusan {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.major {
+  background:white;
+  border:1px solid #e2eaf4;
+  padding:17px;
+  border-radius:12px;
+}
+.major b {color:var(--blue);display:block}
+.major small {color:var(--muted)}
+.form-area {background:white}
+.form-box {
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 25px #0000000a;
+  margin-bottom:20px;
+}
+.form-box h3 {color:var(--blue);margin-bottom:15px}
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.field {margin-bottom:13px}
+label {
+  display:block;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:6px;
+}
+input,select,textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #d5dfeb;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:14px;
+  background:white;
+}
+input:focus,select:focus,textarea:focus {
+  outline:2px solid #b9ddff;
+  border-color:var(--blue2);
+}
+textarea {min-height:85px;resize:vertical}
+.info {
+  background:#eaf4ff;
+  border-left:4px solid var(--blue2);
+  padding:14px;
+  border-radius:8px;
+  font-size:13px;
+  margin:12px 0;
+}
+.warning {
+  background:#fff6df;
+  border-left:4px solid #e7a522;
+  padding:14px;
+  border-radius:8px;
+  font-size:13px;
+  margin:12px 0;
+}
+.hidden {display:none!important}
+.checklist label {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-weight:normal;
+  margin:10px 0;
+}
+.checklist input {width:auto;margin-top:4px}
+.rules {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.rules .card {border-top:4px solid var(--blue)}
+footer {
+  background:#061e3a;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  font-size:13px;
+}
+footer a {color:#9bcfff}
+.result {
+  background:#e8f7ed;
+  padding:14px;
+  border-radius:8px;
+  margin:15px 0;
+  color:#176537;
+  font-size:14px;
+}
+table {width:100%;border-collapse:collapse;min-width:650px}
+th,td {padding:12px;border-bottom:1px solid #e5eaf1;text-align:left;font-size:13px}
+th {background:var(--blue);color:white}
+.table-wrap {overflow-x:auto}
+.delete {
+  background:#ffe6e6;
+  color:#a51d1d;
+  padding:7px 10px;
+  border:0;
+  border-radius:5px;
+  cursor:pointer;
+}
+@media(max-width:750px) {
+  .hero-inner {grid-template-columns:1fr}
+  .hero-art {min-height:150px}
+  .jurusan {grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px) {
+  .cards,.schedule,.rules,.form-grid {grid-template-columns:1fr}
+  .jurusan {grid-template-columns:1fr 1fr}
+  nav {justify-content:center}
+  nav div:last-child {text-align:center}
+  .container {padding:40px 15px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <div class="brand">
+    🏫 SMKN 2 PALEMBANG
+    <small>PPDB TAHUN AJARAN 2027/2028</small>
+  </div>
+  <div>
+    <a href="#beranda">Beranda</a>
+    <a href="#jalur">Jalur</a>
+    <a href="#jurusan">Jurusan</a>
+    <a href="#daftar">Daftar</a>
+    <a href="#peraturan">Peraturan</a>
+  </div>
+</nav>
+</header>
+
+<!-- BERANDA -->
+<section class="hero" id="beranda">
+<div class="hero-inner">
+  <div>
+    <span>SELAMAT DATANG CALON PESERTA DIDIK BARU</span>
+    <h1>PENERIMAAN MURID BARU</h1>
+    <h2>SMK NEGERI 2 PALEMBANG</h2>
+    <h3>Tahun Ajaran 2027/2028</h3>
+    <p>
+      Mari bergabung dan kembangkan kemampuan,
+      kreativitas, serta keterampilan untuk masa depan.
+    </p>
+    <a href="#daftar" class="btn btn-white">Mulai Pendaftaran →</a>
+  </div>
+  <div class="hero-art">🎓🏫</div>
+</div>
+</section>
+
+<!-- INFORMASI -->
+<section class="container">
+<div class="section-title">
+  <h2>Informasi Pendaftaran</h2>
+  <p>Kenali proses penerimaan murid baru</p>
+</div>
+<div class="cards">
+  <div class="card">
+    <div class="number">01</div>
+    <h3>Jalur Pertama</h3>
+    <p>
+      Jalur seleksi melalui Prestasi, TKA,
+      Domisili, dan Afirmasi.
+    </p>
+  </div>
+  <div class="card">
+    <div class="number">02</div>
+    <h3>Jalur Kedua</h3>
+    <p>
+      Jalur seleksi melalui tes setelah
+      pengumpulan berkas persyaratan.
+    </p>
+  </div>
+</div>
+</section>
+
+<!-- JADWAL -->
+<section class="container" id="jalur">
+<div class="section-title">
+  <h2>Jalur dan Jadwal Pendaftaran</h2>
+  <p>Jadwal rancangan sesuai informasi yang diberikan</p>
+</div>
+<div class="schedule">
+  <div class="card">
+    <span class="tag">JALUR 01</span>
+    <h3>Jalur Pertama</h3>
+    <h2>Selasa – Sabtu</h2>
+    <p>Pendaftaran melalui empat jenis seleksi:</p>
+    <ul>
+      <li>Prestasi</li>
+      <li>Tes Kemampuan Akademik (TKA)</li>
+      <li>Domisili</li>
+      <li>Afirmasi</li>
+    </ul>
+    <div class="info">
+      Calon siswa wajib memilih satu jenis seleksi
+      dan menyiapkan persyaratan sesuai jalurnya.
+    </div>
+  </div>
+  <div class="card">
+    <span class="tag">JALUR 02</span>
+    <h3>Jalur Kedua – Jalur Tes</h3>
+    <h2>Senin – Selasa</h2>
+    <p>Tahapan pendaftaran:</p>
+    <ul>
+      <li>Mengumpulkan berkas pendaftaran.</li>
+      <li>Menunggu informasi jadwal tes.</li>
+      <li>Mengikuti tes seleksi.</li>
+      <li>Menunggu pengumuman hasil tes.</li>
+    </ul>
+    <div class="info">
+      Jadwal tes dan pengumuman akan mengikuti
+      informasi resmi panitia.
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SYARAT -->
+<section class="container">
+<div class="section-title">
+  <h2>Persyaratan Jalur Pertama</h2>
+  <p>Periksa persyaratan sebelum mengisi formulir</p>
+</div>
+<div class="cards">
+
+  <div class="card">
+    <h3>🏆 1. Jalur Prestasi</h3>
+    <ul>
+      <li>Mengumpulkan sertifikat prestasi.</li>
+      <li>Membawa medali jika tersedia.</li>
+      <li>Mengumpulkan nilai rapor.</li>
+      <li>Nilai TKA minimal 60.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📚 2. Jalur TKA</h3>
+    <ul>
+      <li>Mengumpulkan nilai TKA.</li>
+      <li>Mengumpulkan nilai rapor.</li>
+      <li>Nilai TKA di atas 80.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📍 3. Jalur Domisili</h3>
+    <ul>
+      <li>Mengumpulkan foto jarak rumah ke sekolah.</li>
+      <li>Mengumpulkan nilai rapor.</li>
+      <li>Mengumpulkan nilai TKA.</li>
+      <li>Nilai rapor dan TKA minimal 70.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🤝 4. Jalur Afirmasi</h3>
+    <ul>
+      <li>Mengumpulkan kartu PIP.</li>
+      <li>Mengumpulkan foto rumah.</li>
+      <li>Desil minimal 2–4 sesuai ketentuan rancangan.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="warning">
+  <b>Perhatian:</b> Nilai batas, kategori desil, dan bukti
+  persyaratan di atas merupakan rancangan dari pemohon
+  website dan harus diperiksa serta disahkan panitia PPDB.
+</div>
+</section>
+
+<!-- JURUSAN -->
+<section class="container" id="jurusan">
+<div class="section-title">
+  <h2>Pilihan Program Keahlian</h2>
+  <p>Pilih jurusan yang sesuai dengan minat dan bakatmu</p>
+</div>
+
+<div class="jurusan">
+  <div class="major"><b>01. TELIND</b><small>Teknik Elektronika Industri</small></div>
+  <div class="major"><b>02. TKJ</b><small>Teknik Komputer dan Jaringan</small></div>
+  <div class="major"><b>03. DPIB</b><small>Desain Pemodelan dan Informasi Bangunan</small></div>
+  <div class="major"><b>04. TPM</b><small>Teknik Permesinan</small></div>
+  <div class="major"><b>05. TKR</b><small>Teknik Kendaraan Ringan</small></div>
+  <div class="major"><b>06. TITL</b><small>Teknik Instalasi Tenaga Listrik</small></div>
+  <div class="major"><b>07. MEKATRO</b><small>Teknik Mekatronika</small></div>
+  <div class="major"><b>08. GEO</b><small>Teknik Geomatika</small></div>
+  <div class="major"><b>09. TSM</b><small>Teknik Sepeda Motor</small></div>
+</div>
+</section>
+
+<!-- FORMULIR -->
+<section class="form-area" id="daftar">
+<div class="container">
+<div class="section-title">
+  <h2>Formulir Pendaftaran</h2>
+  <p>Isi pertanyaan berikut dengan teliti</p>
+</div>
+
+<div class="warning">
+  <b>DEMO / SIMULASI:</b> Formulir ini bukan sistem
+  pendaftaran resmi. Jangan masukkan NIK, NISN, nomor
+  telepon, alamat lengkap, atau dokumen pribadi asli.
+  Data contoh disimpan di browser perangkat ini.
+</div>
+
+<form id="registrationForm">
+
+<div class="form-box">
+  <h3>🧑 A. Identitas Calon Siswa</h3>
+
+  <div class="form-grid">
+    <div class="field">
+      <label>1. Nama lengkap</label>
+      <input id="nama" required placeholder="Nama calon siswa">
+    </div>
+    <div class="field">
+      <label>2. Jenis kelamin</label>
+      <select id="gender" required>
+        <option value="">Pilih jenis kelamin</option>
+        <option>Laki-laki</option>
+        <option>Perempuan</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>3. Tempat lahir</label>
+      <input id="tempat" required placeholder="Tempat lahir">
+    </div>
+    <div class="field">
+      <label>4. Tanggal lahir</label>
+      <input id="tanggal" type="date" required>
+    </div>
+    <div class="field">
+      <label>5. Asal sekolah</label>
+      <input id="asal" required placeholder="Nama SMP/MTs">
+    </div>
+    <div class="field">
+      <label>6. Tahun lulus</label>
+      <select id="lulus" required>
+        <option value="">Pilih tahun</option>
+        <option>2027</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>7. Kota/kabupaten asal</label>
+      <input id="kota" required placeholder="Kota/kabupaten">
+    </div>
+    <div class="field">
+      <label>8. Email (opsional)</label>
+      <input id="email" type="email" placeholder="Email contoh">
+    </div>
+  </div>
+</div>
+
+<div class="form-box">
+  <h3>🎓 B. Pilihan Pendaftaran</h3>
+
+  <div class="field">
+    <label>9. Pilih jalur pendaftaran</label>
+    <select id="jalurPilihan" required>
+      <option value="">Pilih jalur</option>
+      <option value="Jalur Pertama">Jalur Pertama</option>
+      <option value="Jalur Kedua - Tes">Jalur Kedua - Tes</option>
+    </select>
+  </div>
+
+  <div id="firstRoute" class="hidden">
+    <div class="field">
+      <label>10. Pilih jenis seleksi Jalur Pertama</label>
+      <select id="jenisJalur">
+        <option value="">Pilih seleksi</option>
+        <option value="Prestasi">Prestasi</option>
+        <option value="TKA">TKA</option>
+        <option value="Domisili">Domisili</option>
+        <option value="Afirmasi">Afirmasi</option>
+      </select>
+    </div>
+    <div id="requirements" class="info">
+      Pilih jenis seleksi untuk melihat persyaratan.
+    </div>
+  </div>
+
+  <div id="secondRoute" class="hidden">
+    <div class="info">
+      <b>Jalur Kedua – Tes</b><br>
+      Persyaratan: kumpulkan berkas pendaftaran,
+      tunggu informasi jadwal tes, ikuti tes,
+      kemudian tunggu pengumuman hasil tes.
+    </div>
+    <div class="field">
+      <label>11. Apakah bersedia mengikuti tes?</label>
+      <select id="bersedia">
+        <option value="">Pilih jawaban</option>
+        <option>Ya, bersedia</option>
+        <option>Tidak</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>12. Pilihan jurusan pertama</label>
+    <select id="jurusan1" required>
+      <option value="">Pilih jurusan</option>
+      <option>TELIND - Teknik Elektronika Industri</option>
+      <option>TKJ - Teknik Komputer dan Jaringan</option>
+      <option>DPIB - Desain Pemodelan dan Informasi Bangunan</option>
+      <option>TPM - Teknik Permesinan</option>
+      <option>TKR - Teknik Kendaraan Ringan</option>
+      <option>TITL - Teknik Instalasi Tenaga Listrik</option>
+      <option>MEKATRO - Teknik Mekatronika</option>
+      <option>GEO - Teknik Geomatika</option>
+      <option>TSM - Teknik Sepeda Motor</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>13. Pilihan jurusan kedua (opsional)</label>
+    <select id="jurusan2">
+      <option value="">Tidak memilih</option>
+      <option>TELIND - Teknik Elektronika Industri</option>
+      <option>TKJ - Teknik Komputer dan Jaringan</option>
+      <option>DPIB - Desain Pemodelan dan Informasi Bangunan</option>
+      <option>TPM - Teknik Permesinan</option>
+      <option>TKR - Teknik Kendaraan Ringan</option>
+      <option>TITL - Teknik Instalasi Tenaga Listrik</option>
+      <option>MEKATRO - Teknik Mekatronika</option>
+      <option>GEO - Teknik Geomatika</option>
+      <option>TSM - Teknik Sepeda Motor</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-box">
+  <h3>📊 C. Pertanyaan Akademik</h3>
+
+  <div class="form-grid">
+    <div class="field">
+      <label>14. Nilai rata-rata rapor</label>
+      <input id="rapor" type="number" min="0" max="100"
+      placeholder="Contoh: 85">
+    </div>
+    <div class="field">
+      <label>15. Nilai TKA</label>
+      <input id="tka" type="number" min="0" max="100"
+      placeholder="Contoh: 90">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>16. Apa mata pelajaran favoritmu?</label>
+    <input id="mapel" placeholder="Contoh: Matematika">
+  </div>
+
+  <div class="field">
+    <label>17. Mengapa kamu ingin masuk SMK?</label>
+    <textarea id="alasan" placeholder="Tuliskan alasanmu..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>18. Apa cita-citamu setelah lulus?</label>
+    <textarea id="cita" placeholder="Tuliskan cita-citamu..."></textarea>
+  </div>
+</div>
+
+<div class="form-box">
+  <h3>👨‍👩‍👦 D. Informasi Orang Tua / Wali</h3>
+  <div class="field">
+    <label>19. Nama orang tua/wali</label>
+    <input id="wali" placeholder="Nama orang tua/wali">
+  </div>
+  <div class="field">
+    <label>20. Pekerjaan orang tua/wali</label>
+    <input id="pekerjaan" placeholder="Pekerjaan">
+  </div>
+  <div class="field">
+    <label>21. Apakah orang tua mengetahui pendaftaran ini?</label>
+    <select id="izin" required>
+      <option value="">Pilih jawaban</option>
+      <option>Ya</option>
+      <option>Belum</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-box">
+  <h3>📋 E. Persetujuan</h3>
+  <div class="checklist">
+    <label>
+      <input type="checkbox" id="benar" required>
+      Saya menyatakan bahwa data simulasi yang saya isi
+      sudah benar.
+    </label>
+    <label>
+      <input type="checkbox" id="aturan" required>
+      Saya bersedia menaati peraturan sekolah.
+    </label>
+    <label>
+      <input type="checkbox" id="ortu" required>
+      Saya sudah membicarakan rencana pendaftaran
+      dengan orang tua/wali.
+    </label>
+  </div>
+
+  <button type="submit" class="btn">Simpan Pendaftaran Demo</button>
+  <button type="reset" class="btn" style="background:#65758a">
+    Kosongkan Formulir
+  </button>
+  <div id="message"></div>
+</div>
+
+</form>
+</div>
+</section>
+
+<!-- PERATURAN -->
+<section class="container" id="peraturan">
+<div class="section-title">
+  <h2>Peraturan Sekolah</h2>
+  <p>Hak, kewajiban, dan larangan peserta didik</p>
+</div>
+
+<div class="rules">
+  <div class="card">
+    <h3>✅ Kewajiban Siswa</h3>
+    <ul>
+      <li>Datang ke sekolah tepat waktu.</li>
+      <li>Memakai seragam sesuai ketentuan.</li>
+      <li>Menghormati guru, staf, dan teman.</li>
+      <li>Menjaga kebersihan sekolah.</li>
+      <li>Mengikuti pembelajaran dengan disiplin.</li>
+      <li>Menjaga fasilitas sekolah.</li>
+      <li>Mematuhi tata tertib sekolah.</li>
+      <li>Mengutamakan keselamatan saat praktik.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🚫 Larangan Siswa</h3>
+    <ul>
+      <li>Melakukan perundungan atau kekerasan.</li>
+      <li>Merokok atau menggunakan vape di sekolah.</li>
+      <li>Membawa barang berbahaya ke sekolah.</li>
+      <li>Melakukan kecurangan saat ujian.</li>
+      <li>Merusak fasilitas sekolah.</li>
+      <li>Mengganggu proses belajar mengajar.</li>
+      <li>Membuang sampah sembarangan.</li>
+      <li>Menyalahgunakan internet sekolah.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>⭐ Hak Siswa</h3>
+    <ul>
+      <li>Mendapatkan pendidikan yang layak.</li>
+      <li>Mendapatkan bimbingan guru.</li>
+      <li>Menggunakan fasilitas sesuai aturan.</li>
+      <li>Mengikuti kegiatan ekstrakurikuler.</li>
+      <li>Mendapatkan perlakuan yang adil.</li>
+      <li>Menyampaikan pendapat secara sopan.</li>
+      <li>Mendapatkan lingkungan belajar aman.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📌 Tanggung Jawab Siswa</h3>
+    <ul>
+      <li>Belajar dengan sungguh-sungguh.</li>
+      <li>Menjaga nama baik sekolah.</li>
+      <li>Menyelesaikan tugas tepat waktu.</li>
+      <li>Menjaga hubungan baik dengan warga sekolah.</li>
+      <li>Bertanggung jawab atas tindakan sendiri.</li>
+      <li>Menjaga keamanan alat praktik.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="info">
+  Peraturan di atas adalah ringkasan rancangan tata tertib.
+  Ketentuan final harus mengikuti buku tata tertib resmi
+  SMK Negeri 2 Palembang.
+</div>
+</section>
+
+<!-- DAFTAR DEMO -->
+<section class="container">
+<div class="section-title">
+  <h2>Data Pendaftar Demo</h2>
+  <p>Daftar pendaftaran yang tersimpan pada browser ini</p>
+</div>
+
+<div class="warning">
+  Hanya untuk pengujian. Data lokal tidak dikirim ke sekolah
+  dan tidak menjadi bukti pendaftaran resmi.
+</div>
+
+<div class="form-box">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Jalur</th>
+          <th>Seleksi</th>
+          <th>Jurusan</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="registrationTable"></tbody>
+    </table>
+  </div>
+  <button class="btn" id="clearData" style="background:#bd3030">
+    Hapus Semua Data Demo
+  </button>
+</div>
+</section>
+
+<footer>
+  <h3>SMK NEGERI 2 PALEMBANG</h3>
+  <p>Portal Simulasi Pendaftaran Murid Baru 2027/2028</p>
+  <p>Website resmi:
+    <a href="https://smkn2palembang.sch.id/" target="_blank">
+      smkn2palembang.sch.id
+    </a>
+  </p>
+  <br>
+  <p>Nama Pembuat Website: <b>Rifqi Sidqi</b></p>
+  <p>© 2027 | Website Proyek Pembelajaran HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+// ===================================
+// DATA DAN LOCAL STORAGE
+// ===================================
+
+const KEY = "ppdb_smkn2_demo_2027";
+
+function getRegistrations() {
+  try {
+    return JSON.parse(localStorage.getItem(KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveRegistrations(data) {
+  localStorage.setItem(KEY, JSON.stringify(data));
+}
+
+// ===================================
+// PILIH JALUR PENDAFTARAN
+// ===================================
+
+const route = document.getElementById("jalurPilihan");
+const firstRoute = document.getElementById("firstRoute");
+const secondRoute = document.getElementById("secondRoute");
+const jenis = document.getElementById("jenisJalur");
+const requirements = document.getElementById("requirements");
+
+route.addEventListener("change", () => {
+  firstRoute.classList.add("hidden");
+  secondRoute.classList.add("hidden");
+
+  jenis.required = false;
+  document.getElementById("bersedia").required = false;
+
+  if (route.value === "Jalur Pertama") {
+    firstRoute.classList.remove("hidden");
+    jenis.required = true;
+  }
+
+  if (route.value === "Jalur Kedua - Tes") {
+    secondRoute.classList.remove("hidden");
+    document.getElementById("bersedia").required = true;
+  }
+});
+
+// ===================================
+// SYARAT OTOMATIS
+// ===================================
+
+const criteria = {
+  "Prestasi": `
+    <b>Persyaratan Prestasi:</b>
+    <ul>
+      <li>Sertifikat prestasi.</li>
+      <li>Medali jika tersedia.</li>
+      <li>Nilai rapor.</li>
+      <li>Nilai TKA minimal 60.</li>
+    </ul>
+  `,
+  "TKA": `
+    <b>Persyaratan TKA:</b>
+    <ul>
+      <li>Nilai TKA di atas 80.</li>
+      <li>Nilai rapor.</li>
+    </ul>
+  `,
+  "Domisili": `
+    <b>Persyaratan Domisili:</b>
+    <ul>
+      <li>Foto jarak rumah ke sekolah.</li>
+      <li>Nilai rapor minimal 70.</li>
+      <li>Nilai TKA minimal 70.</li>
+    </ul>
+  `,
+  "Afirmasi": `
+    <b>Persyaratan Afirmasi:</b>
+    <ul>
+      <li>Kartu PIP.</li>
+      <li>Foto rumah.</li>
+      <li>Desil 2–4 sesuai ketentuan.</li>
+    </ul>
+  `
+};
+
+jenis.addEventListener("change", () => {
+  requirements.innerHTML =
+    criteria[jenis.value] ||
+    "Pilih jenis seleksi untuk melihat persyaratan.";
+});
+
+// ===================================
+// FORM PENDAFTARAN
+// ===================================
+
+const form = document.getElementById("registrationForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const routeValue = route.value;
+  const typeValue = routeValue === "Jalur Pertama"
+    ? jenis.value
+    : "Tes";
+
+  const rapor = document.getElementById("rapor").value;
+  const tka = document.getElementById("tka").value;
+
+  // Validasi nilai sesuai jalur
+  if (routeValue === "Jalur Pertama") {
+    if (typeValue === "Prestasi" && Number(tka) < 60) {
+      alert("Nilai TKA jalur Prestasi minimal 60.");
+      return;
+    }
+
+    if (typeValue === "TKA" && Number(tka) <= 80) {
+      alert("Nilai TKA jalur TKA harus di atas 80.");
+      return;
+    }
+
+    if (typeValue === "Domisili" &&
+        (Number(tka) < 70 || Number(rapor) < 70)) {
+      alert("Nilai rapor dan TKA jalur Domisili minimal 70.");
+      return;
+    }
+
+    if ((typeValue === "Prestasi" || typeValue === "TKA" ||
+        typeValue === "Domisili") &&
+        (rapor === "" || tka === "")) {
+      alert("Lengkapi nilai rapor dan TKA.");
+      return;
+    }
+  }
+
+  if (routeValue === "Jalur Kedua - Tes" &&
+      document.getElementById("bersedia").value !== "Ya, bersedia") {
+    alert("Silakan menyatakan kesediaan mengikuti tes.");
+    return;
+  }
+
+  if (document.getElementById("jurusan1").value ===
+      document.getElementById("jurusan2").value &&
+      document.getElementById("jurusan2").value !== "") {
+    alert("Pilihan jurusan pertama dan kedua tidak boleh sama.");
+    return;
+  }
+
+  const record = {
+    id: Date.now(),
+    nama: document.getElementById("nama").value.trim(),
+    gender: document.getElementById("gender").value,
+    tempat: document.getElementById("tempat").value,
+    tanggal: document.getElementById("tanggal").value,
+    asal: document.getElementById("asal").value,
+    kota: document.getElementById("kota").value,
+    jalur: routeValue,
+    seleksi: typeValue,
+    jurusan: document.getElementById("jurusan1").value,
+    jurusan2: document.getElementById("jurusan2").value,
+    rapor: rapor,
+    tka: tka,
+    mapel: document.getElementById("mapel").value,
+    alasan: document.getElementById("alasan").value,
+    cita: document.getElementById("cita").value,
+    wali: document.getElementById("wali").value,
+    pekerjaan: document.getElementById("pekerjaan").value,
+    izin: document.getElementById("izin").value,
+    waktu: new Date().toLocaleString("id-ID")
+  };
+
+  const registrations = getRegistrations();
+  registrations.push(record);
+
+  try {
+    saveRegistrations(registrations);
+  } catch (error) {
+    alert("Penyimpanan gagal. Ruang browser mungkin penuh.");
+    return;
+  }
+
+  document.getElementById("message").innerHTML =
+    `<div class="result">
+      <b>Pendaftaran demo berhasil disimpan!</b><br>
+      Nama: ${escapeHTML(record.nama)}<br>
+      Jalur: ${escapeHTML(record.jalur)}<br>
+      Jurusan: ${escapeHTML(record.jurusan)}<br>
+      Status: DATA SIMULASI, BUKAN BUKTI PENDAFTARAN RESMI.
+    </div>`;
+
+  renderTable();
+  form.reset();
+
+  firstRoute.classList.add("hidden");
+  secondRoute.classList.add("hidden");
+  requirements.textContent = "Pilih jenis seleksi untuk melihat persyaratan.";
+});
+
+// ===================================
+// TABEL PENDAFTAR
+// ===================================
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+function renderTable() {
+  const tbody = document.getElementById("registrationTable");
+  const records = getRegistrations();
+
+  tbody.innerHTML = "";
+
+  if (!records.length) {
+    tbody.innerHTML =
+      '<tr><td colspan="6">Belum ada data pendaftar demo.</td></tr>';
+    return;
+  }
+
+  records.forEach((item, index) => {
+    const tr = document.createElement("tr");
+
+    const values = [
+      index + 1,
+      item.nama,
+      item.jalur,
+      item.seleksi,
+      item.jurusan
+    ];
+
+    values.forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      tr.appendChild(td);
+    });
+
+    const action = document.createElement("td");
+    const btn = document.createElement("button");
+    btn.className = "delete";
+    btn.textContent = "Hapus";
+    btn.addEventListener("click", () => {
+      if (!confirm("Hapus data demo ini?")) return;
+
+      const updated = getRegistrations().filter(
+        record => record.id !== item.id
+      );
+
+      saveRegistrations(updated);
+      renderTable();
+    });
+
+    action.appendChild(btn);
+    tr.appendChild(action);
+    tbody.appendChild(tr);
+  });
+}
+
+// ===================================
+// HAPUS SEMUA DATA
+// ===================================
+
+document.getElementById("clearData").addEventListener("click", () => {
+  if (!confirm("Yakin ingin menghapus semua data pendaftar demo?")) return;
+
+  localStorage.removeItem(KEY);
+  renderTable();
+  alert("Semua data demo berhasil dihapus.");
+});
+
+// ===================================
+// MULAI WEBSITE
+// ===================================
+
+renderTable();
+
+</script>
+</body>
+</html>
